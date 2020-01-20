@@ -1,8 +1,13 @@
+# TODO
+# - trim
+# - better data flow
+
 from io import BytesIO
 from zipfile import ZipFile
 from urllib.request import urlopen
 from bs4 import BeautifulSoup 
 import re
+import db
 
 
 def get_latest_date(url):
@@ -48,4 +53,8 @@ def get_latest_data(url):
 
 	return data
 
-# get_latest_data(get_latest_url())
+url = get_latest_url()
+
+if not db.is_data_updated(get_latest_date(url)):
+	data = get_latest_data(url)
+	db.update_data(data)
