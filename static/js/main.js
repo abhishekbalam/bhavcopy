@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
     $(document).keypress(function (e) {
         var key = e.which;
-        if(key == 13)  // the enter key code
+        if(key == 13)
         {
         $("#submit").click();
         return false; 
@@ -35,6 +35,10 @@ $( document ).ready(function() {
                         $("#tableHeader").text("No stock with found with name: \""+query+"\"");
                         $("#myTable").hide();
                     }
+                })
+                .fail(
+                function(){
+                    alert('Error: Server down, please try later.')
                 });
         }
         else{
