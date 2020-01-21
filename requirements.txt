@@ -13,6 +13,7 @@ more-itertools==8.1.0
 pkg-resources==0.0.0
 portend==2.6
 pytz==2019.3
+redis==3.3.11
 six==1.14.0
 soupsieve==1.9.5
 tempora==2.1.0

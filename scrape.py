@@ -40,21 +40,19 @@ def get_latest_data(url):
 	# print(csvdata.split('\r\n')[0])
 	# print(len(csvdata.split('\r\n')[1:]))
 	
-	data = [x.split(",") for x in csvdata.split('\r\n')[1:-1]]
+	raw_data = [x.split(",") for x in csvdata.split('\r\n')[1:-1]]
+
+	# Code: row[0]
+	# Name: row[1]
+	# Open: row[4]
+	# High: row[5]
+	# Low:  row[6]
+	# Close:row[7]
 	
-	# for item in data:
-	# 	print("-----------------")
-	# 	print("Code: " + item[0])
-	# 	print("Name: " + item[1])
-	# 	print("Open: " + item[4])
-	# 	print("High: " + item[5])
-	# 	print("Low: " + item[6])
-	# 	print("Close: " + item[7])
+	data = []
+	for row in raw_data:
+		data.append([ row[0], row[1], row[4], row[5], row[6], row[7]])
 
 	return data
 
 url = get_latest_url()
-
-if not db.is_data_updated(get_latest_date(url)):
-	data = get_latest_data(url)
-	db.update_data(data)
