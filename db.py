@@ -1,18 +1,19 @@
 import redis
+import scrape
 
 r = redis.Redis(host='localhost',
 	port=6379, 
 	password='')
 
-def is_data_updated(date):
+def data_is_updated(date):
 	last_updated = r.get('last_updated').decode('utf-8')
 	if last_updated == date:
 		return True
 	else:
-		r.set('last_updated', date)
 		return False
 
-def update_data(data):
+def update_data(data, date):
+	r.set('last_updated', date)
 	hash_data = {}
 	os_data = {}
 	for row in data:
@@ -20,3 +21,7 @@ def update_data(data):
 		os_data.update({row[1]: row[0]})
 	r.zadd('stock_ranking', os_data)
 	r.hmset('stock_data', hash_data)
+
+def get_top_ten():
+	data = scrape.get_latest_data(scrape.get_latest_url())
+	return data
