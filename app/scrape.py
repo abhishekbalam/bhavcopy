@@ -1,13 +1,8 @@
-# TODO
-# - trim
-# - better data flow
-
 from io import BytesIO
 from zipfile import ZipFile
 from urllib.request import urlopen
 from bs4 import BeautifulSoup 
 import re
-import db
 
 
 def get_latest_date(url):
@@ -51,8 +46,11 @@ def get_latest_data(url):
 	
 	data = []
 	for row in raw_data:
-		data.append([ row[0], row[1], row[4], row[5], row[6], row[7]])
-
+		temp = []
+		[ temp.append(row[i].strip()) for i in [0,1,4,5,6,7]]
+		# for i in [0, 1, 4, 5, 6, 7]:
+		# 	temp.append(row[i].strip())
+		data.append(temp)
 	return data
 
 url = get_latest_url()
