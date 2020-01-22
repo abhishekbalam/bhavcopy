@@ -32,7 +32,7 @@ $( document ).ready(function() {
                         $('#myTable > tbody:last-child').append(rowdata);
                     }
                     else{
-                        $("#tableHeader").text("No stock with found with name: \""+query+"\"");
+                        $("#tableHeader").text("No stock found with name: \""+query+"\"");
                         $("#myTable").hide();
                     }
                 })
