@@ -1,4 +1,4 @@
-# Zerodha Test Project: Bhavcopy 
+# Test Project: Bhavcopy 
 
 ## Problem Statement:
 
@@ -16,3 +16,17 @@ BSE publishes a "Bhavcopy" file every day here: https://www.bseindia.com/markets
 3. Commit the code to Github. 
 4. Host the application on AWS or Heroku or a similar provider
 5. Share both the links.
+
+## Hosting
+
+The Site is hosted on an AWS instance at the below link:
+https://bhav.abhishekbalam.xyz
+
+Running on the cherrypy server, as a Systemd service,
+on port 8085, behing an Nginx reverse proxy under
+a subdomain of my main domain.
+
+## Assumptions
+
+By "top 10 stock entries from the Redis DB", I understood in the same order as the CSV,
+sorted by the numeric BSE Code. 

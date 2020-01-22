@@ -12,7 +12,7 @@ def get_latest_date(url):
 
 
 def get_latest_url():
-	""" Returns the url of the latest bhav file """
+	""" Returns the url of the latest bhav file from the webpage. """
 	pagehtml = urlopen("https://www.bseindia.com/markets/MarketInfo/BhavCopy.aspx").read().decode('utf-8')
 	soupdata = BeautifulSoup(pagehtml, 'html.parser')
 	data = list(soupdata.find_all('a', attrs = {'id': "ContentPlaceHolder1_btnhylZip"}))
@@ -20,7 +20,7 @@ def get_latest_url():
 	return url
 
 def get_latest_data(url):
-	""" Returns parsed csv data downloaded from url """
+	""" Returns parsed csv data downloaded from url. """
 	resp = urlopen(url)
 
 	if resp.getcode() != 200:
@@ -45,6 +45,7 @@ def get_latest_data(url):
 	# Close:row[7]
 	
 	data = []
+	# Removing irrelevent columns
 	for row in raw_data:
 		temp = []
 		[ temp.append(row[i].strip()) for i in [0,1,4,5,6,7]]
@@ -52,5 +53,3 @@ def get_latest_data(url):
 		# 	temp.append(row[i].strip())
 		data.append(temp)
 	return data
-
-url = get_latest_url()
