@@ -10,10 +10,10 @@ $( document ).ready(function() {
     });   
 
     $("#submit").click(function(){
-        query = $("#search").val();
+        query = $("#search").val().trim();
         console.log(query);
         if(query !== ""){
-            $.get( "/search", { name: $("#search").val().toUpperCase() },
+            $.get( "/search", { name: $("#search").val().toUpperCase().trim() },
                 function(data){
                     if(data.status){
                         $("#myTable").show();
